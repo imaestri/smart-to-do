@@ -1,9 +1,9 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from "@nestjs/common";
 
-import { Task } from './entities/task.entity';
-import { CreateTaskDto } from './dto/create-task.dto';
-import { UpdateTaskDto } from './dto/update-task.dto';
-import { GetTasksFilterDto } from './dto/get-task.dto';
+import { Task } from "./entities/task.entity";
+import { CreateTaskDto } from "./dto/create-task.dto";
+import { UpdateTaskDto } from "./dto/update-task.dto";
+import { GetTasksFilterDto } from "./dto/get-task.dto";
 
 @Injectable()
 export class TasksService {
@@ -17,7 +17,7 @@ export class TasksService {
       return this.tasks;
     }
 
-    const isDone = done === 'true';
+    const isDone = done === "true";
     return this.tasks.filter((task) => task.done === isDone);
   }
 
@@ -31,7 +31,7 @@ export class TasksService {
     const newTask: Task = {
       id: this.nextId++,
       title: dto.title,
-      description: dto.description || '',
+      description: dto.description || "",
       done: dto.done || false,
     };
     this.tasks.push(newTask);
