@@ -33,9 +33,16 @@ export class TasksService {
   }
 
   async create(dto: CreateTaskDto): Promise<Task> {
+    console.log(dto, "dto");
     const result = await supabase
       .from(this.table)
-      .insert([{ ...dto }])
+      .insert([
+        {
+          ...dto,
+          done: false,
+          createdAt: new Date().toISOString(),
+        },
+      ])
       .select()
       .single();
     console.log(result);
